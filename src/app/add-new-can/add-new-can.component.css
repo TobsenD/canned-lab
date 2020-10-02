@@ -1,0 +1,22 @@
+.new-card
+ {
+   width: 90%;
+ }
+
+ .mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+mat-grid-list
+{
+  height:600px;
+}
+
+mat-form-field
+ {
+   margin-right: 12px;
+ }

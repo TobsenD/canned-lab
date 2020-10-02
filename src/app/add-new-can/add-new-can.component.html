@@ -1,0 +1,71 @@
+<div class="grid-container">
+  <mat-grid-list cols="1" rowHeight="fit">
+    <mat-grid-tile>
+      <mat-horizontal-stepper linear #stepper class="new-card">
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Canned</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Produkt Name" formControlName="produktName" required>
+           </mat-form-field>
+            <br />
+            <div>
+              <img [src]="srcResult" height="200" alt="">
+              <br/>
+              <button type="button" mat-raised-button (click)="fileInput.click()">Foto hochladen</button>
+              <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+            </div>
+            <br/>
+            <div>
+              <button mat-button matStepperNext>Weiter</button>
+            </div>
+
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Typisierung</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Select</mat-label>
+                <mat-select matNativeControl formControlName="produktTyp" (selectionChange)="defineDateType()" required>
+                  <mat-option value="EINGEKOCHT">eingekocht</mat-option>
+                  <mat-option value="GEKAUFT">gekauft</mat-option>
+                </mat-select>
+           </mat-form-field>
+           <mat-form-field appearance="outline">
+            <mat-label>{{dateType}}</mat-label>
+            <input matInput [matDatepicker]="dp">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+          </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Weiter</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Fertig</ng-template>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{produktName.value}}</mat-card-title> <br/>
+            <img [src]="srcResult" height="200" alt="">
+          </mat-card-header>
+          <mat-card-content>
+            <ul>
+              <li>Typ: {{produktTyp.value}}</li>
+            </ul>
+          </mat-card-content>
+
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
