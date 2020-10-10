@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { CanType } from '../cantypes';
 import { Product } from '../model/product';
 import { ProductsService } from '../products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,11 +23,13 @@ export class DashboardComponent {
   products: Product[];
   eingekocht: Product[];
   gekauft: Product[];
-  displayedColumns: string[] = ['id', 'name', 'typ', 'canDate', 'mhdDate', 'menge'];
-  displayedCanColumns: string[] = ['id', 'name', 'typ', 'canDate', 'menge'];
-  displayedBuyColumns: string[] = ['id', 'name', 'typ', 'mhdDate', 'menge'];
+  displayedColumns: string[] = ['name', 'typ', 'canDate', 'mhdDate', 'menge', 'action'];
+  displayedCanColumns: string[] = ['name', 'typ', 'canDate', 'menge', 'action'];
+  displayedBuyColumns: string[] = ['name', 'typ', 'mhdDate', 'menge', 'action'];
   expandedElement: Product | null;
   breakpoint: number = 1;
+
+  constructor(private breakpointObserver: BreakpointObserver, private productService: ProductsService, private router: Router) {}
 
   getProducts(): void {
     this.productService.getProducts().subscribe(products => {
@@ -70,6 +73,17 @@ export class DashboardComponent {
     });
   }
 
+  delete(element){
+    element.menge=0;
+    this.productService.deleteProduct(element).subscribe(() => {
+      this.getProducts();
+    });
+  }
+
+  edit(element){
+    this.router.navigateByUrl('/dashboard/'+element.id)
+  }
+
   toggleExpand(event, row){
     if(event.srcElement.id!=="btn"){
       this.expandedElement = this.expandedElement === row ? null : row
@@ -81,5 +95,4 @@ export class DashboardComponent {
     return (new Date(row.mhdDate)<=new Date());
   }
 
-  constructor(private breakpointObserver: BreakpointObserver, private productService: ProductsService) {}
 }

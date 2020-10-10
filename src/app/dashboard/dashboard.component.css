@@ -80,17 +80,17 @@ tr.expandable-element-row:not(.expandable-expanded-row):active {
   text-align: center;
 }
 
-.mhdWarning
+.mhdWarning .mat-cell
 {
-  background-color: #FFAB91;
+ color: #FF5722 !important;
 }
 
 tr.expandable-element-row.mhdWarning:hover {
-  background:  #FF5722;
+  background:  #FFCCBC;
 }
 
 tr.expandable-element-row.mhdWarning:not(.expandable-expanded-row):hover {
-  background:  #FF5722;
+  background:  #FFCCBC;
 }
 
 
