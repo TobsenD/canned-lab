@@ -42,16 +42,21 @@ export class AddNewCanComponent implements OnInit {
       produktName: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      produktTyp: ['', Validators.required]
+      produktTyp: ['GEKAUFT', Validators.required],
+      date: [new Date, Validators.required]
     });
   }
 
   get produktName(){
-    return this.firstFormGroup.controls['produktName']
+    return this.firstFormGroup.controls['produktName'];
   }
 
   get produktTyp(){
-    return this.secondFormGroup.controls['produktTyp']
+    return this.secondFormGroup.controls['produktTyp'];
+  }
+
+  get date(){
+    return this.secondFormGroup.controls['date'];
   }
 
   defineDateType(){
@@ -77,6 +82,7 @@ export class AddNewCanComponent implements OnInit {
 
     }
   }
+
 }
 
 export enum CanType {
