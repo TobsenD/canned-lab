@@ -4,4 +4,5 @@ export interface Product {
   image: any;
   typ: string;
   date: Date;
+  menge: number;
 }

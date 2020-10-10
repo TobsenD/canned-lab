@@ -1,17 +1,17 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            {{card.title}}
+            Produkt-Liste
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <ul>
             <li *ngFor="let product of products">
-              {{product.id}} - {{product.name}}
+              {{product.id}} - {{product.name}} - {{product.typ}} - {{product.date | date: 'dd.MM.yyyy'}} - {{product.menge}} - <img [src]="product.image" height="100" alt="">
             </li>
           </ul>
         </mat-card-content>

@@ -35,6 +35,7 @@ export class AddNewCanComponent implements OnInit {
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   srcResult: any;
   dateType: string = 'MHD';
   products: Product[];
@@ -49,6 +50,17 @@ export class AddNewCanComponent implements OnInit {
 
   get date(){
     return this.secondFormGroup.controls['date'];
+  }
+
+  get menge(){
+    return this.thirdFormGroup.controls['menge'];
+  }
+
+  checkMenge(): boolean {
+    if(parseInt(this.menge.value)>0){
+      return false
+    }
+    return true;
   }
 
   defineDateType(){
@@ -77,7 +89,9 @@ export class AddNewCanComponent implements OnInit {
 
   submitProduct(): void {
     console.log("Submit");
-    this.productService.addProduct({name: this.produktName.value, image: this.srcResult, typ: this.produktTyp.value, date: this.date.value} as Product).subscribe(product => {
+    let newDate = this.date.value
+    newDate.setUTCHours(0,0,0,0);
+    this.productService.addProduct({name: this.produktName.value, image: this.srcResult, typ: this.produktTyp.value, date: newDate, menge: this.menge.value} as Product).subscribe(product => {
       this.products.push(product);
     });
     console.log(this.products)
@@ -103,6 +117,8 @@ export class AddNewCanComponent implements OnInit {
       produktTyp: ['GEKAUFT', Validators.required],
       date: [new Date, Validators.required]
     });
+    this.thirdFormGroup = this._formBuilder.group({
+      menge: [1, Validators.required]});
     this.getProducts();
   }
 }
