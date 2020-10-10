@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { ProductsService } from '../products.service';
+import { Product } from '../model/product';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +10,9 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+
+  products: Product[];
+
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -29,5 +34,13 @@ export class DashboardComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  getProducts(): void {
+    this.productService.getProducts().subscribe(products => this.products = products);
+  }
+
+  ngOnInit(){
+    this.getProducts();
+  }
+
+  constructor(private breakpointObserver: BreakpointObserver, private productService: ProductsService) {}
 }
