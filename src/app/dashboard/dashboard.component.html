@@ -32,9 +32,15 @@
               </ng-container>
 
                <!-- Date Column -->
-               <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef scope="col"> Datum </th>
-                <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd.MM.yyyy'}} </td>
+               <ng-container matColumnDef="canDate">
+                <th mat-header-cell *matHeaderCellDef scope="col"> Eingekocht </th>
+                <td mat-cell *matCellDef="let element"> {{element.canDate | date: 'dd.MM.yyyy'}} </td>
+              </ng-container>
+
+               <!-- Date Column -->
+               <ng-container matColumnDef="mhdDate">
+                <th mat-header-cell *matHeaderCellDef scope="col"> MHD </th>
+                <td mat-cell *matCellDef="let element"> {{element.mhdDate | date: 'dd.MM.yyyy'}} </td>
               </ng-container>
 
                <!-- Qty Column -->
@@ -101,9 +107,9 @@
               </ng-container>
 
                <!-- Date Column -->
-               <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef scope="col"> Datum </th>
-                <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd.MM.yyyy'}} </td>
+               <ng-container matColumnDef="canDate">
+                <th mat-header-cell *matHeaderCellDef scope="col"> Eingekocht </th>
+                <td mat-cell *matCellDef="let element"> {{element.canDate | date: 'dd.MM.yyyy'}} </td>
               </ng-container>
 
                <!-- Qty Column -->
@@ -118,7 +124,7 @@
 
               <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
               <ng-container matColumnDef="expandedDetail">
-                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedCanColumns.length">
                   <div class="expandable-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div>
                       <img [src]="element.image" height="200" alt="Kein Bild gefunden.">
@@ -127,8 +133,8 @@
                 </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns; "></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"  class="expandable-element-row"
+              <tr mat-header-row *matHeaderRowDef="displayedCanColumns; "></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedCanColumns;"  class="expandable-element-row"
                 [class.expandable-expanded-row]="expandedElement === row"
                 [class.deleteRow]="row.menge<1"
                 (click)="toggleExpand($event, row)">
@@ -170,9 +176,9 @@
               </ng-container>
 
                <!-- Date Column -->
-               <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef scope="col"> Datum </th>
-                <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd.MM.yyyy'}} </td>
+               <ng-container matColumnDef="mhdDate">
+                <th mat-header-cell *matHeaderCellDef scope="col"> MHD </th>
+                <td mat-cell *matCellDef="let element"> {{element.mhdDate | date: 'dd.MM.yyyy'}} </td>
               </ng-container>
 
                <!-- Qty Column -->
@@ -187,7 +193,7 @@
 
               <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
               <ng-container matColumnDef="expandedDetail">
-                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedBuyColumns.length">
                   <div class="expandable-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div>
                       <img [src]="element.image" height="200" alt="Kein Bild gefunden.">
@@ -196,8 +202,8 @@
                 </td>
               </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns; "></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"  class="expandable-element-row"
+              <tr mat-header-row *matHeaderRowDef="displayedBuyColumns; "></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedBuyColumns;"  class="expandable-element-row"
                 [class.expandable-expanded-row]="expandedElement === row"
                 [class.deleteRow]="row.menge<1"
                 (click)="toggleExpand($event, row)">

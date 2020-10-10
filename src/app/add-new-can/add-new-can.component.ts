@@ -38,8 +38,25 @@ export class AddNewCanComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   srcResult: any;
-  dateType: string = 'MHD';
+  showCan: boolean = false;
   products: Product[];
+
+  constructor(private _formBuilder: FormBuilder,  private productService: ProductsService,
+    private location: Location) { }
+
+  ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      produktName: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      produktTyp: [CanType.GEKAUFT, Validators.required],
+      canDate: [new Date],
+      mhdDate: [new Date(new Date().setMonth(new Date().getMonth()+8)), Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      menge: [1, Validators.required]});
+    this.getProducts();
+  }
 
   get produktName(){
     return this.firstFormGroup.controls['produktName'];
@@ -49,8 +66,12 @@ export class AddNewCanComponent implements OnInit {
     return this.secondFormGroup.controls['produktTyp'];
   }
 
-  get date(){
-    return this.secondFormGroup.controls['date'];
+  get mhdDate(){
+    return this.secondFormGroup.controls['mhdDate'];
+  }
+
+  get canDate(){
+    return this.secondFormGroup.controls['canDate']
   }
 
   get menge(){
@@ -66,10 +87,10 @@ export class AddNewCanComponent implements OnInit {
 
   defineDateType(){
     if(this.secondFormGroup.controls['produktTyp'].value===CanType.EINGEKOCHT){
-        this.dateType='Einkochdatum'
-    }
+        this.showCan=true;
+          }
     else {
-      this.dateType = 'MHD'
+      this.showCan = false;
     }
   }
 
@@ -89,9 +110,16 @@ export class AddNewCanComponent implements OnInit {
   }
 
   submitProduct(): void {
-    let newDate = this.date.value
-    newDate.setUTCHours(0,0,0,0);
-    this.productService.addProduct({name: this.produktName.value, image: this.srcResult, typ: this.produktTyp.value, date: newDate, menge: this.menge.value} as Product).subscribe(product => {
+    let mhdDate = this.mhdDate.value;
+    mhdDate.setUTCHours(0,0,0,0);
+
+    let canDate=null;
+    if(this.showCan){
+      canDate=this.canDate.value;
+      canDate.setUTCHours(0,0,0,0);
+    }
+
+    this.productService.addProduct({name: this.produktName.value, image: this.srcResult, typ: this.produktTyp.value,canDate: canDate, mhdDate: mhdDate, menge: this.menge.value} as Product).subscribe(product => {
       this.products.push(product);
     });
   }
@@ -104,19 +132,5 @@ export class AddNewCanComponent implements OnInit {
     this.location.back();
   }
 
-  constructor(private _formBuilder: FormBuilder,  private productService: ProductsService,
-    private location: Location) { }
 
-  ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      produktName: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      produktTyp: [CanType.GEKAUFT, Validators.required],
-      date: [new Date, Validators.required]
-    });
-    this.thirdFormGroup = this._formBuilder.group({
-      menge: [1, Validators.required]});
-    this.getProducts();
-  }
 }

@@ -35,9 +35,15 @@
                   <mat-option value="GEKAUFT">gekauft</mat-option>
                 </mat-select>
            </mat-form-field>
-           <mat-form-field appearance="outline">
-            <mat-label>{{dateType}}</mat-label>
-            <input matInput [matDatepicker]="dp" formControlName="date">
+           <mat-form-field *ngIf="showCan" appearance="outline">
+            <mat-label>Eingekocht</mat-label>
+            <input matInput [matDatepicker]="dp" formControlName="canDate">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>MHD</mat-label>
+            <input matInput [matDatepicker]="dp" formControlName="mhdDate">
             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp></mat-datepicker>
           </mat-form-field>
@@ -58,7 +64,8 @@
           <mat-card-content>
             <ul>
               <li>Typ: {{produktTyp.value}}</li>
-              <li>{{this.dateType}}: {{date.value.toLocaleDateString()}}</li>
+              <li *ngIf="showCan">Eingekocht: {{canDate.value.toLocaleDateString()}}</li>
+              <li>MHD: {{mhdDate.value.toLocaleDateString()}}</li>
             </ul>
           <mat-form-field appearance="outline">
             <mat-label>Menge</mat-label>

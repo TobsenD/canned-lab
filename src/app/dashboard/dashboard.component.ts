@@ -22,7 +22,9 @@ export class DashboardComponent {
   products: Product[];
   eingekocht: Product[];
   gekauft: Product[];
-  displayedColumns: string[] = ['id', 'name', 'typ', 'date', 'menge'];
+  displayedColumns: string[] = ['id', 'name', 'typ', 'canDate', 'mhdDate', 'menge'];
+  displayedCanColumns: string[] = ['id', 'name', 'typ', 'canDate', 'menge'];
+  displayedBuyColumns: string[] = ['id', 'name', 'typ', 'mhdDate', 'menge'];
   expandedElement: Product | null;
   breakpoint: number = 1;
 

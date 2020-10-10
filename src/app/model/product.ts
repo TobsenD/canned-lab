@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   image: any;
   typ: string;
-  date: Date;
+  canDate: Date;
+  mhdDate: Date;
   menge: number;
 }
