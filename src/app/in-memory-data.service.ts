@@ -12,6 +12,10 @@ export class InMemoryDataService implements InMemoryDbService{
     let newDate = new Date();
     newDate.setUTCHours(0,0,0,0);
 
+    let newMhdDate = new Date();
+    newMhdDate.setUTCHours(0,0,0,0);
+    newMhdDate.setMonth(new Date().getMonth()+4);
+
     const products: Product[] = [
       {
         id: 1,
@@ -19,7 +23,7 @@ export class InMemoryDataService implements InMemoryDbService{
       image: null,
       typ: "EINGEKOCHT",
       canDate: newDate,
-      mhdDate: newDate,
+      mhdDate: newMhdDate,
       menge: 1
     }, {
       id: 2,
@@ -43,7 +47,7 @@ export class InMemoryDataService implements InMemoryDbService{
           image: null,
           typ: "GEKAUFT",
           canDate: null,
-          mhdDate: newDate,
+          mhdDate: newMhdDate,
           menge: 4
           }];
     return {products};
