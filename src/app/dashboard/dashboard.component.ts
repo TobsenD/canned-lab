@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { CanType } from '../cantypes';
 import { Product } from '../model/product';
 import { ProductsService } from '../products.service';
 
@@ -19,15 +20,32 @@ import { ProductsService } from '../products.service';
 export class DashboardComponent {
 
   products: Product[];
+  eingekocht: Product[];
+  gekauft: Product[];
   displayedColumns: string[] = ['id', 'name', 'typ', 'date', 'menge'];
   expandedElement: Product | null;
+  breakpoint: number = 1;
 
   getProducts(): void {
-    this.productService.getProducts().subscribe(products => this.products = products);
+    this.productService.getProducts().subscribe(products => {
+      this.products = products;
+      this.gekauft = products.filter(product => product.typ===CanType.GEKAUFT);
+      this.eingekocht = products.filter(product => product.typ===CanType.EINGEKOCHT);
+    });
+
+
   }
 
   ngOnInit(){
     this.getProducts();
+    this.breakpoint = (window.innerWidth <= 1024) ? 1 : 2;
+    console.log(this.breakpoint)
+  }
+
+  onResize(event) {
+    console.log(event.target.innerWidth)
+    this.breakpoint = (event.target.innerWidth <= 1024) ? 1 : 2;
+    console.log(this.breakpoint)
   }
 
   clickSubstract(element){

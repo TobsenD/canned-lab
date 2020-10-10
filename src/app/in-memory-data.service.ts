@@ -27,7 +27,21 @@ export class InMemoryDataService implements InMemoryDbService{
       typ: "EINGEKOCHT",
       date: newDate,
       menge: 4
-      }];
+      }, {
+        id: 3,
+        name: "Test2",
+        image: null,
+        typ: "GEKAUFT",
+        date: newDate,
+        menge: 4
+        }, {
+          id: 4,
+          name: "Test2",
+          image: null,
+          typ: "GEKAUFT",
+          date: newDate,
+          menge: 4
+          }];
     return {products};
   }
 

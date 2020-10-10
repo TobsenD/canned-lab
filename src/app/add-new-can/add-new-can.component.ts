@@ -9,6 +9,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import { Product } from '../model/product';
 import { ProductsService } from '../products.service';
 import { Location } from '@angular/common';
+import { CanType } from '../cantypes';
 
 
 @Component({
@@ -111,16 +112,11 @@ export class AddNewCanComponent implements OnInit {
       produktName: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      produktTyp: ['GEKAUFT', Validators.required],
+      produktTyp: [CanType.GEKAUFT, Validators.required],
       date: [new Date, Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
       menge: [1, Validators.required]});
     this.getProducts();
   }
-}
-
-export enum CanType {
-  EINGEKOCHT = 'EINGEKOCHT',
-  GEKAUFT = 'GEKAUFT'
 }
