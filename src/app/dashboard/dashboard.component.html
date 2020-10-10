@@ -68,6 +68,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"  class="expandable-element-row"
                 [class.expandable-expanded-row]="expandedElement === row"
                 [class.deleteRow]="row.menge<1"
+                [class.mhdWarning]="triggerWarning(row)"
                 (click)="toggleExpand($event, row)">
               </tr>
               <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="expandable-detail-row"></tr>
@@ -137,6 +138,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedCanColumns;"  class="expandable-element-row"
                 [class.expandable-expanded-row]="expandedElement === row"
                 [class.deleteRow]="row.menge<1"
+                [class.mhdWarning]="triggerWarning(row)"
                 (click)="toggleExpand($event, row)">
               </tr>
               <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="expandable-detail-row"></tr>
@@ -206,6 +208,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedBuyColumns;"  class="expandable-element-row"
                 [class.expandable-expanded-row]="expandedElement === row"
                 [class.deleteRow]="row.menge<1"
+                [class.mhdWarning]="triggerWarning(row)"
                 (click)="toggleExpand($event, row)">
               </tr>
               <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="expandable-detail-row"></tr>

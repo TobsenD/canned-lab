@@ -30,6 +30,10 @@ tr.expandable-element-row:not(.expandable-expanded-row):hover {
   background: whitesmoke;
 }
 
+tr.expandable-element-row:hover {
+  background: whitesmoke;
+}
+
 tr.expandable-element-row:not(.expandable-expanded-row):active {
   background: #efefef;
 }
@@ -75,3 +79,19 @@ tr.expandable-element-row:not(.expandable-expanded-row):active {
 {
   text-align: center;
 }
+
+.mhdWarning
+{
+  background-color: #FFAB91;
+}
+
+tr.expandable-element-row.mhdWarning:hover {
+  background:  #FF5722;
+}
+
+tr.expandable-element-row.mhdWarning:not(.expandable-expanded-row):hover {
+  background:  #FF5722;
+}
+
+
+

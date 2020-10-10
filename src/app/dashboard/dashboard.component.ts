@@ -74,7 +74,11 @@ export class DashboardComponent {
     if(event.srcElement.id!=="btn"){
       this.expandedElement = this.expandedElement === row ? null : row
     }
+  }
 
+  triggerWarning(row){
+    console.log("Waring: " + (new Date(row.mhdDate)<=new Date()) )
+    return (new Date(row.mhdDate)<=new Date());
   }
 
   constructor(private breakpointObserver: BreakpointObserver, private productService: ProductsService) {}
