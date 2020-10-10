@@ -6,6 +6,9 @@ import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { Product } from '../model/product';
+import { ProductsService } from '../products.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -34,18 +37,7 @@ export class AddNewCanComponent implements OnInit {
   secondFormGroup: FormGroup;
   srcResult: any;
   dateType: string = 'MHD';
-
-  constructor(private _formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      produktName: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      produktTyp: ['GEKAUFT', Validators.required],
-      date: [new Date, Validators.required]
-    });
-  }
+  products: Product[];
 
   get produktName(){
     return this.firstFormGroup.controls['produktName'];
@@ -83,6 +75,36 @@ export class AddNewCanComponent implements OnInit {
     }
   }
 
+  submitProduct(): void {
+    console.log("Submit");
+    this.productService.addProduct({name: this.produktName.value, image: this.srcResult, typ: this.produktTyp.value, date: this.date.value} as Product).subscribe(product => {
+      this.products.push(product);
+    });
+    console.log(this.products)
+
+  }
+
+  getProducts(): void {
+    this.productService.getProducts().subscribe(products => this.products = products);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  constructor(private _formBuilder: FormBuilder,  private productService: ProductsService,
+    private location: Location) { }
+
+  ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      produktName: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      produktTyp: ['GEKAUFT', Validators.required],
+      date: [new Date, Validators.required]
+    });
+    this.getProducts();
+  }
 }
 
 export enum CanType {
