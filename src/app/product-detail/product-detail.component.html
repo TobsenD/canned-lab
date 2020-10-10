@@ -1,0 +1,49 @@
+<div *ngIf="product" class="grid-container">
+  <mat-grid-list cols="1" rowHeight="640px">
+    <mat-grid-tile>
+      <mat-card class="edit-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{product.name | uppercase}} Details
+          </mat-card-title>
+          <mat-card-subtitle> <span>ID: </span>{{product.id}}</mat-card-subtitle>
+        </mat-card-header>
+        <div>
+          <img height="200" src={{product.image}} alt="Kein Foto hinzugefügt."><br />
+          <button type="button" mat-raised-button (click)="fileInput.click()">Foto hochladen</button>
+          <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+          <br />
+        </div>
+        <mat-card-content class="edit-card-content">
+          <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Produkt Name" [(ngModel)]="product.name">
+            </mat-form-field>
+          </p>
+          <p>
+            <span>Typ: </span>{{product.typ}}
+          </p>
+          <p>
+            <mat-form-field *ngIf="showCan()" appearance="outline">
+              <mat-label>Eingekocht</mat-label>
+              <input matInput [matDatepicker]="dp" [(ngModel)]="product.canDate">
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>MHD</mat-label>
+              <input matInput [matDatepicker]="dp" [(ngModel)]="product.mhdDate">
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="goBack()">Abbrechen</button>
+          <button mat-button (click)="save()">Speichern</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

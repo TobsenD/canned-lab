@@ -22,6 +22,14 @@ export class ProductsService {
     );
   }
 
+  getProduct(id: number): Observable<Product>{
+    const url = `${this.productsUrl}/${id}`;
+    return this.http.get<Product>(url).pipe(
+      tap(_ => console.log(`fetched id=${id}`)),
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
+    );
+  }
+
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.productsUrl, product, this.httpOptions).pipe(
       tap((newProduct: Product) => console.log(`added product w/ id=${newProduct.id}`)),

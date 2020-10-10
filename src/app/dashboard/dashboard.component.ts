@@ -81,7 +81,7 @@ export class DashboardComponent {
   }
 
   edit(element){
-    this.router.navigateByUrl('/dashboard/'+element.id)
+    this.router.navigateByUrl('/detail/'+element.id)
   }
 
   toggleExpand(event, row){

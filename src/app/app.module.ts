@@ -27,6 +27,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { MatTableModule } from '@angular/material/table';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { MatTableModule } from '@angular/material/table';
     ToolbarComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    AddNewCanComponent
+    AddNewCanComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     MatDatepickerModule,
     MatTableModule,
+    CommonModule,
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
