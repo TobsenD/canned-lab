@@ -88,14 +88,11 @@ export class AddNewCanComponent implements OnInit {
   }
 
   submitProduct(): void {
-    console.log("Submit");
     let newDate = this.date.value
     newDate.setUTCHours(0,0,0,0);
     this.productService.addProduct({name: this.produktName.value, image: this.srcResult, typ: this.produktTyp.value, date: newDate, menge: this.menge.value} as Product).subscribe(product => {
       this.products.push(product);
     });
-    console.log(this.products)
-
   }
 
   getProducts(): void {

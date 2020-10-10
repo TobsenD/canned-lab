@@ -6,6 +6,11 @@
   bottom: 15px;
 }
 
+.dashboard-card-content {
+  overflow-y: auto;
+  height: 400px;
+}
+
 .more-button {
   position: absolute;
   top: 5px;
@@ -14,30 +19,31 @@
 
 table {
   width: 100%;
+  box-shadow: none;
 }
 
-tr.example-detail-row {
+tr.expandable-detail-row {
   height: 0;
 }
 
-tr.example-element-row:not(.example-expanded-row):hover {
+tr.expandable-element-row:not(.expandable-expanded-row):hover {
   background: whitesmoke;
 }
 
-tr.example-element-row:not(.example-expanded-row):active {
+tr.expandable-element-row:not(.expandable-expanded-row):active {
   background: #efefef;
 }
 
-.example-element-row td {
+.expandable-element-row td {
   border-bottom-width: 0;
 }
 
-.example-element-detail {
+.expandable-element-detail {
   overflow: hidden;
   display: flex;
 }
 
-.example-element-diagram {
+.expandable-element-diagram {
   min-width: 80px;
   border: 2px solid black;
   padding: 8px;
@@ -46,16 +52,26 @@ tr.example-element-row:not(.example-expanded-row):active {
   height: 104px;
 }
 
-.example-element-symbol {
+.expandable-element-symbol {
   font-weight: bold;
   font-size: 40px;
   line-height: normal;
 }
 
-.example-element-description {
+.expandable-element-description {
   padding: 16px;
 }
 
-.example-element-description-attribution {
+.expandable-element-description-attribution {
   opacity: 0.5;
+}
+
+.deleteRow .mat-cell{
+  opacity: 60%;
+  text-decoration: line-through;
+}
+
+.textcenter
+{
+  text-align: center;
 }

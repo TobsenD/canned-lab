@@ -23,13 +23,28 @@ export class ProductsService {
   }
 
   addProduct(product: Product): Observable<Product> {
-    console.log("addProduct")
     return this.http.post<Product>(this.productsUrl, product, this.httpOptions).pipe(
       tap((newProduct: Product) => console.log(`added product w/ id=${newProduct.id}`)),
       catchError(this.handleError<Product>('addProduct'))
       );
   }
 
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(this.productsUrl, product, this.httpOptions).pipe(
+      tap(_ => console.log(`updated product w/ id=${product.id}`)),
+      catchError(this.handleError<Product>('updateProduct'))
+    );
+  }
+
+  deleteProduct(product: Product): Observable<Product> {
+
+    const url = `${this.productsUrl}/${product.id}`;
+
+    return this.http.delete<Product>(url, this.httpOptions).pipe(
+      tap(_ => console.log(`deleted product id=${product.id}`)),
+      catchError(this.handleError<Product>('deleteProduct'))
+    );
+  }
 
   /**
    * Handle Http operation that failed.

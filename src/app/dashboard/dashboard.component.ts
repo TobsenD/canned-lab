@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { ProductsService } from '../products.service';
-import { Product } from '../model/product';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component } from '@angular/core';
+import { Product } from '../model/product';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +28,33 @@ export class DashboardComponent {
 
   ngOnInit(){
     this.getProducts();
+  }
+
+  clickSubstract(element){
+    element.menge=element.menge-1;
+    if(element.menge>0){
+      this.productService.updateProduct(element).subscribe(product => {
+        this.products.push(product);
+      });
+    } else {
+      this.productService.deleteProduct(element).subscribe(() => {
+        this.getProducts();
+      });
+    }
+  }
+
+  clickAdd(element){
+    element.menge=element.menge+1;
+    this.productService.updateProduct(element).subscribe(product => {
+      this.products.push(product);
+    });
+  }
+
+  toggleExpand(event, row){
+    if(event.srcElement.id!=="btn"){
+      this.expandedElement = this.expandedElement === row ? null : row
+    }
+
   }
 
   constructor(private breakpointObserver: BreakpointObserver, private productService: ProductsService) {}
