@@ -26,6 +26,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatTableModule,
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
