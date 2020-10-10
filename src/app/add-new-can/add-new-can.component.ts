@@ -78,6 +78,14 @@ export class AddNewCanComponent implements OnInit {
     return this.thirdFormGroup.controls['menge'];
   }
 
+  get mhdDateString(){
+    return new Date(this.mhdDate.value).toLocaleDateString();
+  }
+
+  get canDateString(){
+    return new Date(this.canDate.value).toLocaleDateString();
+  }
+
   checkMenge(): boolean {
     if(parseInt(this.menge.value)>0){
       return false
@@ -110,12 +118,12 @@ export class AddNewCanComponent implements OnInit {
   }
 
   submitProduct(): void {
-    let mhdDate = this.mhdDate.value;
+    let mhdDate = new Date(this.mhdDate.value);
     mhdDate.setUTCHours(0,0,0,0);
 
     let canDate=null;
     if(this.showCan){
-      canDate=this.canDate.value;
+      canDate=new Date(this.canDate.value);
       canDate.setUTCHours(0,0,0,0);
     }
 

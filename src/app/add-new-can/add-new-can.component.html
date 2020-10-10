@@ -48,6 +48,7 @@
             <mat-datepicker #dp></mat-datepicker>
           </mat-form-field>
             <div>
+              <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Weiter</button>
             </div>
           </form>
@@ -59,13 +60,13 @@
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div><br/>
             <mat-card-title>{{produktName.value}}</mat-card-title> <br/>
-            <img [src]="srcResult" height="200" alt="">
+            <img *ngIf="srcResult" [src]="srcResult" height="200" alt="">
           </mat-card-header>
           <mat-card-content>
             <ul>
               <li>Typ: {{produktTyp.value}}</li>
-              <li *ngIf="showCan">Eingekocht: {{canDate.value.toLocaleDateString()}}</li>
-              <li>MHD: {{mhdDate.value.toLocaleDateString()}}</li>
+              <li *ngIf="showCan">Eingekocht: {{canDateString}}</li>
+              <li>MHD: {{mhdDateString}}</li>
             </ul>
           <mat-form-field appearance="outline">
             <mat-label>Menge</mat-label>

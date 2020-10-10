@@ -91,7 +91,6 @@ export class DashboardComponent {
   }
 
   triggerWarning(row){
-    console.log("Waring: " + (new Date(row.mhdDate)<=new Date()) )
     return (new Date(row.mhdDate)<=new Date());
   }
 
