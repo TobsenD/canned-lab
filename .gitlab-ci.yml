@@ -15,3 +15,11 @@ install_dependencies:
   artifacts:
     paths:
       - node_modules/
+
+lint:
+  stage: test
+  script:
+    - npm lint
+    artifacts:
+      paths:
+        - node_modules/

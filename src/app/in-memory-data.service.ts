@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Product } from './model/product'
+import { Product } from './model/product';
 
 @Injectable({
   providedIn: 'root'
@@ -8,44 +8,44 @@ import { Product } from './model/product'
 export class InMemoryDataService implements InMemoryDbService{
 
 
-  createDb(){
-    let newDate = new Date();
-    newDate.setUTCHours(0,0,0,0);
+  createDb(): { products: { id: number; name: string; image: any; typ: string; canDate: Date; mhdDate: Date; menge: number; }[]} {
+    const newDate = new Date();
+    newDate.setUTCHours(0, 0, 0, 0);
 
-    let newMhdDate = new Date();
-    newMhdDate.setUTCHours(0,0,0,0);
-    newMhdDate.setMonth(new Date().getMonth()+4);
+    const newMhdDate = new Date();
+    newMhdDate.setUTCHours(0, 0, 0, 0);
+    newMhdDate.setMonth(new Date().getMonth() + 4);
 
-    const products: Product[] = [
+    const products = [
       {
         id: 1,
-      name: "Test",
+      name: 'Test',
       image: null,
-      typ: "EINGEKOCHT",
+      typ: 'EINGEKOCHT',
       canDate: newDate,
       mhdDate: newMhdDate,
       menge: 1
     }, {
       id: 2,
-      name: "Test2",
+      name: 'Test2',
       image: null,
-      typ: "EINGEKOCHT",
+      typ: 'EINGEKOCHT',
       canDate: newDate,
       mhdDate: newDate,
       menge: 4
       }, {
         id: 3,
-        name: "Test2",
+        name: 'Test2',
         image: null,
-        typ: "GEKAUFT",
+        typ: 'GEKAUFT',
         canDate: null,
         mhdDate: newDate,
         menge: 4
         }, {
           id: 4,
-          name: "Test2",
+          name: 'Test2',
           image: null,
-          typ: "GEKAUFT",
+          typ: 'GEKAUFT',
           canDate: null,
           mhdDate: newMhdDate,
           menge: 4

@@ -44,17 +44,17 @@ export class ProductDetailComponent implements OnInit {
     this.getProduct();
   }
 
-  onFileSelected() {
+  onFileSelected(): void{
     const inputNode: any = document.querySelector('#file');
 
     if (typeof (FileReader) !== 'undefined') {
       const reader = new FileReader();
 
-        reader.readAsDataURL(inputNode.files[0]); // read file as data url
+      reader.readAsDataURL(inputNode.files[0]); // read file as data url
 
-        reader.onload = (e: any) => {
-          this.product.image = e.target.result;
-        };
+      reader.onload = (e: any) => {
+        this.product.image = e.target.result;
+      };
 
     }
   }
@@ -69,7 +69,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   showCan(): boolean{
-    if(this.product.typ===CanType.EINGEKOCHT){
+    if (this.product.typ === CanType.EINGEKOCHT){
       return true;
     }
     return false;
