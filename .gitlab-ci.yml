@@ -19,7 +19,7 @@ install_dependencies:
 lint:
   stage: test
   script:
-    - npm lint
+    - npm run lint
   artifacts:
       paths:
         - node_modules/
