@@ -13,14 +13,9 @@ install_dependencies:
   script:
     - npm install
   artifacts:
+    expire_in: 2 weeks
     paths:
       - node_modules/
-
-
-lint:
-  stage: test
-  script:
-    - npm run lint
 
 build_default:
   stage: build
@@ -34,7 +29,7 @@ build_default:
     paths:
       - dist/canned-lab/
 
-tags:
+build_tags:
   stage: build
   only: [ tags ]
   script:
@@ -45,3 +40,8 @@ tags:
     expire_in: 2 years
     paths:
       - dist/canned-lab/
+
+lint:
+  stage: test
+  script:
+    - npm run lint
