@@ -1,4 +1,4 @@
-image: angular/ngcontainer:latest
+image: node:latest
 
 stages:
   - build
