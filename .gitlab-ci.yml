@@ -20,6 +20,6 @@ lint:
   stage: test
   script:
     - npm lint
-    artifacts:
+  artifacts:
       paths:
         - node_modules/
