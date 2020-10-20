@@ -16,6 +16,6 @@ install_dependencies:
     paths:
       - node_modules/
 
-testing_testing:
+testing:
   stage: test
-  script: npm test
+  script: npm test-headless
