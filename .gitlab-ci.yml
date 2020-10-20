@@ -20,6 +20,11 @@ lint:
   stage: test
   script:
     - npm run lint
+
+build_product:
+  stage: build
+  script:
+    - npm run build
   artifacts:
-      paths:
-        - node_modules/
+    paths:
+      - dist/canned-lab/
