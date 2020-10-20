@@ -15,7 +15,3 @@ install_dependencies:
   artifacts:
     paths:
       - node_modules/
-
-build:
-  stage: test
-  script: npm run test-headless
