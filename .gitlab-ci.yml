@@ -1,4 +1,4 @@
-image: node:latest
+image: angular/ngcontainer:latest
 
 stages:
   - build
@@ -16,6 +16,6 @@ install_dependencies:
     paths:
       - node_modules/
 
-testing:
+build:
   stage: test
   script: npm run test-headless
