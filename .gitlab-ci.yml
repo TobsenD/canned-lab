@@ -1,31 +1,21 @@
 image: node:latest
 
 stages:
-
   - build
+  - test
 
-build:
+cache:
+  paths:
+    - node_modules/
 
-    stage: build
+install_dependencies:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
 
-    when: manual
-
-    script:
-
-        - npm install node-sass --unsafe-perms
-
-        - npm install copy-webpack-plugin@4.5.2 --save-dev
-
-        - npm install
-
-        - ng build --prod --configuration=production
-
-    artifacts:
-
-      paths:
-
-       - dist/
-
-    only:
-
-        - master
+testing_testing:
+  stage: test
+  script: npm test
