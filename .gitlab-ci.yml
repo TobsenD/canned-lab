@@ -28,7 +28,6 @@ build_default:
   stage: build
   except: [ tags ]
   script:
-    - npm install
     - npm run build
   artifacts:
     name: "$CI_PROJECT_NAME"
@@ -41,7 +40,6 @@ build_tags:
   stage: build
   only: [ tags ]
   script:
-    - npm install
     - npm run build-prod
   artifacts:
     name: "$CI_PROJECT_NAME-$CI_COMMIT_TAG"
