@@ -11,7 +11,7 @@
         <div>
           <img height="200" src={{product.image}} alt="Kein Foto hinzugefügt."><br />
           <button type="button" mat-raised-button (click)="fileInput.click()">Foto hochladen</button>
-          <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+          <input hidden=true (change)="onFileSelected()" #fileInput type="file" id="file">
           <br />
         </div>
         <mat-card-content class="edit-card-content">
