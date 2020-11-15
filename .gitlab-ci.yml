@@ -4,6 +4,7 @@ stages:
   - setup
   - test
   - build
+  - package
   
 
 cache:
@@ -47,3 +48,26 @@ build_tags:
     expire_in: 2 years
     paths:
       - dist/canned-lab/
+
+docker-build-main:
+  image: docker:stable
+  stage: package
+  before_script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  script:
+    - docker build --pull -t $CI_REGISTRY_IMAGE .
+    - docker push "$CI_REGISTRY_IMAGE"
+  only:
+    - main
+    
+docker-build:
+  image: docker:stable
+  # Official docker image.
+  stage: package
+  before_script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  script:
+    - docker build --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  except:
+    - main      
