@@ -24,7 +24,6 @@ import { MatInputModule} from '@angular/material/input';
 import { MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {HttpClientModule} from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MatTableModule } from '@angular/material/table';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CommonModule } from '@angular/common';
