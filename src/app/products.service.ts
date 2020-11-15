@@ -9,7 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class ProductsService {
 
-  private productsUrl = 'http://localhost:8080/products';
+  private productsUrl = 'http://192.168.2.106:4201/products';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
