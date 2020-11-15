@@ -1,4 +1,9 @@
-image: node:latest
+image: docker:latest
+services:
+  - name: docker:dind
+variables:
+  DOCKER_DRIVER: overlay
+
 
 stages:
   - setup
@@ -12,6 +17,7 @@ cache:
     - node_modules/
 
 setup:
+  image: node:latest
   stage: setup
   script:
     - npm ci
@@ -19,6 +25,7 @@ setup:
     - main
 
 lint:
+  image: node:latest
   stage: test
   script:
     - npm run lint
@@ -26,6 +33,7 @@ lint:
     - main
 
 build_default:
+  image: node:latest
   stage: build
   except: [ tags ]
   script:
@@ -38,6 +46,7 @@ build_default:
       - dist/canned-lab/
 
 build_tags:
+  image: node:latest
   stage: build
   only: [ tags ]
   script:
